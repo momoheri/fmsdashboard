@@ -7,6 +7,6 @@ if(!isset($_SESSION['admin']) || trim($_SESSION['admin']) == ''){
 }
 
 $sql="SELECT * FROM ms_users WHERE UserID = '".$_SESSION['admin']."'";
-$query = $conn->query($sql);
-$user = $query->fetch_assoc();
+$query = mysql_query($sql);
+$user = mysql_fetch_object($query);
 ?>

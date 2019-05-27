@@ -13,28 +13,28 @@
                   	<label for="username" class="col-sm-3 control-label">Username</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="username" name="username" value="<?php echo $user['username']; ?>">
+                    	<input type="text" class="form-control" id="username" name="username" value="<?php echo $user->Username; ?>">
                   	</div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">Password</label>
 
                     <div class="col-sm-9"> 
-                      <input type="password" class="form-control" id="password" name="password" value="<?php echo $user['password']; ?>">
+                      <input type="password" class="form-control" id="password" name="password" value="<?php echo $user->Password; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                   	<label for="firstname" class="col-sm-3 control-label">Firstname</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $user['firstname']; ?>">
+                    	<input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $user->Firstname; ?>">
                   	</div>
                 </div>
                 <div class="form-group">
                   	<label for="lastname" class="col-sm-3 control-label">Lastname</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $user['lastname']; ?>">
+                    	<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $user-LastName; ?>">
                   	</div>
                 </div>
                 <div class="form-group">

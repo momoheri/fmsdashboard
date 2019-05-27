@@ -73,13 +73,13 @@
                                             <td><?= $data->Date ?></td>
                                             <td><?= $data->Time ?></td>
                                             <td><?= $data->Unit ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?= $data->Pump ?></td>
+                                            <td><?= $data->Job ?></td>
+                                            <td><?= $data->UserData ?></td>
+                                            <td><?= $data->Type ?></td>
+                                            <td><?= $data->UnitPrice ?></td>
+                                            <td><?= $data->Litres ?></td>
+                                            <td><?= $data->TotalPrice ?></td>
                                         </tr>
                                             <?php } ?>
                                     </tbody>

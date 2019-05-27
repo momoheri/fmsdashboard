@@ -1,11 +1,13 @@
 <?php
-include_once '../includes/conn.php';
-include '../includes/session.php';
+include 'includes/conn.php';
+
 //Select All Data
 function load_transaction(){
+    
     $sql = "SELECT * FROM tr_transactions OORDER BY TransactionID DESC";
-    $query = $conn->query($sql);
-    while ($row = $query->fetch_assoc()){
+    $query = mysql_query($sql);
+    $data = array();
+    while ($row = mysql_fetch_object($query)){
         $data[]=$row;
     }
     $result['data'] = $data;

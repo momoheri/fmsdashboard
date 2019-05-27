@@ -18,17 +18,17 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!--<img src="<?php echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="user-image" alt="User Image">-->
-              <span class="hidden-xs"><?php echo $user['Firstname'].' '.$user['LastName']; ?></span>
+              
+              <span class="hidden-xs"><?php echo $user->Firstname.' '.$user->LastName; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <!--<img src="<?php echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">-->
+                
 
                 <p>
-                  <?php echo $user['Firstname'].' '.$user['LastName']; ?>
-                  <small>Member since <?php echo date('M. Y', strtotime($user['created_on'])); ?></small>
+                  <?php echo $user->Firstname.' '.$user->LastName; ?>
+                  <small>Member since <?php echo date('M. Y', strtotime($user->CreatedDate)); ?></small>
                 </p>
               </li>
               <li class="user-footer">

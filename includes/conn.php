@@ -1,7 +1,10 @@
 <?php
-$conn = new mysqli('localhost', 'root','', 'fmsdata');
+error_reporting(E_ERROR);
+$host = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "fmsdata";
 
-if($conn->connect_error){
-    die("Connection failed: " . $conn->connect_error);
-}
+mysql_connect($host,$user,$pass) or die(mysql_error());
+mysql_select_db($dbname) or die(mysql_error());
 ?>
