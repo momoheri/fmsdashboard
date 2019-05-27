@@ -1,6 +1,66 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
 <?php include 'class/cTransactions.php'; ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+     $('#apiurl').val("https://fmtdata.com/API/api.php");
+    
+    var reqTransaction =
+            {
+                jsonrpc: "2.0",
+                method: "Transactions:Read",
+                parameters: {
+                    clientReference: $('#apikey').val(),
+                    clientSecret: $('#apisecret').val(),
+                    period: {
+                        type: "recurring",
+                        value: "Current Month"
+                    },
+                    columns: [
+                        "Date","Time","Volume","Unit","Pump","Job","User Data","Type"
+                    ]
+                },
+                id: "123"
+            }
+            jsonreq = JSON.stringify(reqTransaction,null,4);
+            setInterval(getData,10000);
+            
+            function getData(){
+                
+            }
+                try{
+                    req = JSON.parse(jsonreq);
+                }
+                catch (ex){
+                    alert("Error sync data"+ req);
+                    return;
+                }
+                req.parameters.clientReference = $('#apikey').val();
+                req.parameters.clientSecret = $('#apisecret').val();
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    data: JSON.stringify(req),
+                    url: $('#apiurl').val(),
+                    crossDomain: true
+                })
+                        .done(function(data) {
+                            result = JSON.stringify(data, null, 4);
+                            var response = {"result": result};
+                            $.ajax({
+                                type: 'POST',
+                                dataType: 'json',
+                                url: 'cTransactions.php',
+                                data: response,
+                                success: function (data){
+                                    alert("Success get data"+ data);
+                                }
+                            });
+                        })
+            
+});
+</script>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         
@@ -8,6 +68,18 @@
         <?php include 'includes/menubar.php'; ?>
         
         <div class="content-wrapper">
+            <div class="form-group" style="display:none;">
+            <label class="sr-only" for="apikey">API URL</label>
+            <input id="apiurl" type="text" class="form-control col-sm-4" placeholder="enter API URL" value="https://fmtdata.com/API/api.php" />
+        </div>
+        <div class="form-group" style="display:none;">
+            <label class="sr-only" for="apikey">API Reference</label>
+            <input id="apikey" type="text" class="form-control col-sm-4" value="PTYerryP1567" />
+        </div>
+        <div class="form-group" style="display:none;">
+            <label class="sr-only" for="apisecret">API Secret</label>
+            <input id="apisecret" type="text" class="form-control col-sm-4" value="529163fb24688da3" />
+        </div>
             <section class="content-header">
                 <h1>
                     Transactions
