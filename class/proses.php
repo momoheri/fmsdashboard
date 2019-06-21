@@ -1,5 +1,5 @@
 <?php
-include 'includes/conn.php';
+include '../includes/conn.php';
 $method = $_GET['method'];
 
 if($method === 'transactions'){
@@ -15,19 +15,19 @@ if($method === 'transactions'){
                 mysql_query($sql);
             } catch (Exception $ex) {
                 die(json_encode($ex));
-            }    
+            }
         }else{
-            
+
         }
     }
-    
+
 }
 
 if($method === 'gettank'){
     $result = $_POST['result'];
     $jsondata = json_decode($result,TRUE);
     foreach ($jsondata['result']['values'] as $item){
-        
+
         $sql = "INSERT INTO ms_tanks (UnitNumbers,TankNumber,Volume,VolumePercent,Description,Capacity,Status,LastUpdate) VALUES ('$item[0]','$item[1]','$item[2]','$item[3]','$item[4]','$item[5]','$item[6]','$item[7]')";
         mysql_query($sql);
     }
@@ -39,28 +39,28 @@ if($method === 'getString'){
                 array (
 		  'jsonrpc' => '2.0',
 		  'method' => 'Transactions:Read',
-		  'parameters' => 
+		  'parameters' =>
 		  array (
 			'clientReference' => 'CLIENT_REFERENCE_PLACEHOLDER',
 			'clientSecret' => 'CLIENT_SECRET_PLACEHOLDER',
-			'period' => 
+			'period' =>
 			array (
 			  'type' => 'recurring',
 			  'value' => $value,
 			),
-			'columns' => 
+			'columns' =>
 			array (
 			  0 => 'Date',
 			  1 => 'Time',
 			  2 => 'Volume',
                           3 => 'Driver Authorisation',
-                          4 => 'Name'  
+                          4 => 'Name'
 			),
 		  ),
 		  'id' => '123',
 		)
             );
-    
+
     $result['request'] = $request;
     $result['apikey'] = 'PTYerryP1567';
     $result['secreetkey'] = '529163fb24688da3';
@@ -68,7 +68,7 @@ if($method === 'getString'){
 }
 
 if($method === 'tanklevel'){
-    
+
     $request = json_encode(
             array(
                 'jsonrpc' => '2.0',
@@ -77,7 +77,7 @@ if($method === 'tanklevel'){
                 array(
                     'clientReference'=> 'CLIENT_REFERENCE_PLACEHOLDER',
                     'clientSecret' => 'CLIENT_SECRET_PLACEHOLDER',
-                    'columns' => 
+                    'columns' =>
                     array(
                         0 => 'Unit Number',
                         1 => 'Tank Number',
@@ -106,12 +106,12 @@ function validationTransaction($param1,$param2,$param3,$param4){
         $total = mysql_num_rows(mysql_query($sql));
         return $total;
     }else {
-        
+
     }
 }
 //Select All Data
 function load_transaction(){
-    
+
     $sql = "SELECT * FROM tr_transactions ORDER BY TransactionID DESC";
     $query = mysql_query($sql);
     $data = array();
@@ -140,7 +140,7 @@ function grafik_tank(){
      while ($row = mysql_fetch_array($query)){
          $data[]=$row['UnitNumbers'];
      }
-     
+
      return $data;
  }
 ?>

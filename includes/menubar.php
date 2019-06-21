@@ -43,6 +43,7 @@
                 <li><a href="apikey.php"><i class="fa fa-book"></i>API Key</a></li>
                 <li><a href="#"><i class="fa fa-book"></i>Transaction Range</a></li>
                 <li><a href="#"><i class="fa fa-book"></i>Smart Fill</a></li>
+                <li><a href="users.php"><i class="fa fa-book"></i>Users</a></li>
             </ul>
         </li>
       </ul>

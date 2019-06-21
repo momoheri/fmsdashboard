@@ -1,14 +1,14 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?php 
-            include 'includes/navbar.php'; 
-            include 'includes/menubar.php'; 
-            include 'proses.php'; 
+        <?php
+            include '../includes/navbar.php';
+            include '../includes/menubar.php';
+            include '../class/masterdata.php';
         ?>
-        
+
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>Dashboard</h1>
@@ -17,7 +17,7 @@
                     <li class="active">Dashboard</li>
                 </ol>
             </section>
-            
+
             <section class="content">
                 <?php
                     if(isset($_SESSION['error'])){
@@ -40,9 +40,10 @@
                       ";
                       unset($_SESSION['success']);
                     }
-                    
-                    
+
+
                   ?>
+                  
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
@@ -50,7 +51,7 @@
                                 <h3 class="box-title">Tank Level</h3>
                                 <div class="box-tools pull-right">
                                     <form class="form-inline">
-                                        
+
                                     </form>
                                 </div>
                             </div>
@@ -68,17 +69,18 @@
                     </div>
                 </div>
             </section>
-            
+
         </div>
-        <?php include 'includes/footer.php'; ?>
+        <?php include '../includes/footer.php'; ?>
     </div>
     <?php
         $sql = "SELECT * FROM ms_tanks ORDER BY tankID ASC";
         $query = mysql_query($sql);
         $sql2 = mysql_query("SELECT Volume FROM ms_tanks ORDER BY tankID ASC");
+
     ?>
-    
-    <?php include 'includes/scripts.php'; ?>
+
+    <?php include '../includes/scripts.php'; ?>
     <script>
     var ctx = document.getElementById("barChart");
     var myChart = new Chart(ctx, {

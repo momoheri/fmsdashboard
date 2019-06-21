@@ -1,10 +1,10 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?php include 'includes/navbar.php'; ?>
-        <?php include 'includes/menubar.php'; ?>
-        <?php include 'proses.php'; ?>
+        <?php include '../includes/navbar.php'; ?>
+        <?php include '../includes/menubar.php'; ?>
+        <?php include '../class/proses.php'; ?>
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
@@ -16,7 +16,7 @@
                     <li class="active">API Key</li>
                 </ol>
             </section>
-            
+
             <section class="content">
                 <?php
                     if(isset($_SESSION['error'])){
@@ -32,13 +32,13 @@
                         echo "
                             <div class='alert alert-success alert-dismissible'>
                             <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                            <h4><i class='icon fa-check'></i> Success</h4>
+                            <h4><i class='icon fa fa-check'></i> Success</h4>
                             ".$_SESSION['success']."
                                 </div>
                         ";
                         unset($_SESSION['success']);
                     }
-                    
+
                     $list_data = load_apikey();
                     $data_master = $list_data['data'];
                 ?>
@@ -76,19 +76,19 @@
                 </div>
             </section>
         </div>
-        <?php include 'includes/footer.php'; ?>
-        <?php include 'includes/apikey_modal.php'; ?>
+        <?php include '../includes/footer.php'; ?>
+        <?php include 'apikey_modal.php'; ?>
     </div>
-    <?php include 'includes/scripts.php'; ?>
+    <?php include '../includes/scripts.php'; ?>
     <script>
         $(function() {
             $('.edit').click(function(e){
                 e.preventDefault();
-                $('.edit').modal('show');
+                $('#edit').modal('show');
                 var id = $(this).data('id');
                 getRow(id);
             });
-            
+
             $('.delete').click(function(e){
                 e.preventDefault();
                 $('#delete').modal('show');
@@ -96,7 +96,7 @@
                 getRow(id);
               });
         });
-        
+
         function getRow(id){
             $.ajax({
                 type:'POST',
@@ -104,8 +104,14 @@
                 data: {id:id},
                 dataType: 'json',
                 success: function(response){
-                    $('.idKey').val(response.idKey);
-                    $('.apiKey').val(response.apiKey);
+                    $('.idKey').val(response['idkey']);
+                    //$('.idKey').html(response["idkey"]);
+                    $('.apiKey').html(response["apikey"]);
+                    $('.secretKey').html(response["secretkey"]);
+                    $('#edit_apiKey').val(response["apikey"]);
+                    $('#edit_secretKey').val(response["secretkey"]);
+                       
+
                 }
             });
         }

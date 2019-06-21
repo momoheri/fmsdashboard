@@ -1,11 +1,11 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?php include 'includes/navbar.php'; ?>
-        <?php include 'includes/menubar.php'; ?>
-        <?php include 'class/masterdata.php'; ?>
+        <?php include '../includes/navbar.php'; ?>
+        <?php include '../includes/menubar.php'; ?>
+        <?php include '../class/masterdata.php'; ?>
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>Tanks Level</h1>
@@ -15,7 +15,7 @@
                     <li class="active">Tank Level</li>
                 </ol>
             </section>
-            
+
             <section class="content">
                 <?php
                     if(isset($_SESSION['error'])){
@@ -37,9 +37,11 @@
                         ";
                         unset($_SESSION['success']);
                     }
-                    
                     $list_data = load_tanks();
                     $data_master = $list_data['data'];
+                    
+                    //$list_data = load_tanks();
+                    //$data_master = $list_data['data'];
                 ?>
                 <div class="row">
                     <div class="col-xs-12">
@@ -84,8 +86,8 @@
                 </div>
             </section>
         </div>
-        <?php include 'includes/footer.php'; ?>
+        <?php include '../includes/footer.php'; ?>
     </div>
-    <?php include 'includes/scripts.php'; ?>
+    <?php include '../includes/scripts.php'; ?>
 </body>
 </html>
