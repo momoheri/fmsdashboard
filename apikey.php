@@ -1,7 +1,5 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-
-
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <?php include 'includes/navbar.php'; ?>
@@ -10,11 +8,12 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    Transactions
+                    API Key
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-                    <li class="active">Transactions</li>
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li>Configuration</li>
+                    <li class="active">API Key</li>
                 </ol>
             </section>
             
@@ -40,45 +39,35 @@
                         unset($_SESSION['success']);
                     }
                     
-                    $list_data= load_transaction();
-                    $data_master=$list_data['data'];
+                    $list_data = load_apikey();
+                    $data_master = $list_data['data'];
                 ?>
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <button id="getData" onclick="update()" class="btn btn-primary btn-sm btn-flat">Sync Data</button>
-                                <i id="loading"></i>
+                                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
                             </div>
                             <div class="box-body">
                                 <table id="example1" class="table table-bordered">
                                     <thead>
-                                    <th class="hidden"></th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Pump</th>
-                                    <th>Unit Price</th>
-                                    <th>Litres</th>
-                                    <th>Total Price</th>
-                                    <th>Driver Code</th>
-                                    <th>Driver Name</th>
+                                    <th>API Reference</th>
+                                    <th>API Secret</th>
+                                    <th>Tools</th>
                                     </thead>
                                     <tbody>
                                         <?php
                                             foreach ($data_master as $key => $data) {
                                         ?>
                                         <tr>
-                                            <td class="hidden"></td>
-                                            <td><?= $data->Date ?></td>
-                                            <td><?= $data->Time ?></td>
-                                            <td><?= $data->Pump ?></td>
-                                            <td><?= $data->UnitPrice ?></td>
-                                            <td><?= $data->Litres ?></td>
-                                            <td><?= $data->TotalPrice ?></td>
-                                            <td><?= $data->DriverKey ?></td>
-                                            <td><?= $data->DriverName ?></td>
+                                            <td><?= $data->apiKey ?></td>
+                                            <td><?= $data->secretKey ?></td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm edit btn-flat" data-id="<?= $data->idKey ?>"><i class="fa fa-edit"></i>Edit</button>
+                                                <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?= $data->idKey ?>"><i class="fa fa-trash"></i> Delete</button>
+                                            </td>
                                         </tr>
-                                            <?php } ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -87,10 +76,38 @@
                 </div>
             </section>
         </div>
-        
         <?php include 'includes/footer.php'; ?>
-       
+        <?php include 'includes/apikey_modal.php'; ?>
     </div>
     <?php include 'includes/scripts.php'; ?>
+    <script>
+        $(function() {
+            $('.edit').click(function(e){
+                e.preventDefault();
+                $('.edit').modal('show');
+                var id = $(this).data('id');
+                getRow(id);
+            });
+            
+            $('.delete').click(function(e){
+                e.preventDefault();
+                $('#delete').modal('show');
+                var id = $(this).data('id');
+                getRow(id);
+              });
+        });
+        
+        function getRow(id){
+            $.ajax({
+                type:'POST',
+                url:'apikey_row.php',
+                data: {id:id},
+                dataType: 'json',
+                success: function(response){
+                    $('.idKey').val(response.idKey);
+                    $('.apiKey').val(response.apiKey);
+                }
+            });
+        }
+    </script>
 </body>
-</html>

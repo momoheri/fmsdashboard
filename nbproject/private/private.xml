@@ -3,14 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp3/htdocs/FMS/includes/navbar.php</file>
-            <file>file:/C:/xampp3/htdocs/FMS/includes/menubar.php</file>
-            <file>file:/C:/xampp3/htdocs/FMS/home.php</file>
-            <file>file:/C:/xampp3/htdocs/FMS/includes/header.php</file>
-            <file>file:/C:/xampp3/htdocs/FMS/includes/conn.php</file>
-            <file>file:/C:/xampp3/htdocs/FMS/class/cTransactions.php</file>
-            <file>file:/C:/xampp3/htdocs/FMS/includes/session.php</file>
-            <file>file:/C:/xampp3/htdocs/FMS/transaction.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/includes/header.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/includes/apikey_modal.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/includes/scripts.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/includes/navbar.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/apikey_add.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/bower_components/chart/chart.js</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/tanklevel.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/includes/masterdata.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/home.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/apikey_row.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/transaction.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/apikey.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/includes/menubar.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/class/masterdata.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/proses.php</file>
+            <file>file:/C:/xampp3/htdocs/fmsdashboard/bower_components/chart/Chart.bundle.js</file>
         </group>
     </open-files>
 </project-private>

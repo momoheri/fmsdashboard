@@ -1,20 +1,18 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
 
-
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <?php include 'includes/navbar.php'; ?>
         <?php include 'includes/menubar.php'; ?>
-        <?php include 'proses.php'; ?>
+        <?php include 'class/masterdata.php'; ?>
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>
-                    Transactions
-                </h1>
+                <h1>Tanks Level</h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-                    <li class="active">Transactions</li>
+                    <li>Tanks</li>
+                    <li class="active">Tank Level</li>
                 </ol>
             </section>
             
@@ -40,43 +38,42 @@
                         unset($_SESSION['success']);
                     }
                     
-                    $list_data= load_transaction();
-                    $data_master=$list_data['data'];
+                    $list_data = load_tanks();
+                    $data_master = $list_data['data'];
                 ?>
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <button id="getData" onclick="update()" class="btn btn-primary btn-sm btn-flat">Sync Data</button>
-                                <i id="loading"></i>
+                                <button id="getData" onclick="update_tank()" class="btn btn-primary btn-sm btn-flat">Sync Data</button>
                             </div>
                             <div class="box-body">
                                 <table id="example1" class="table table-bordered">
                                     <thead>
                                     <th class="hidden"></th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Pump</th>
-                                    <th>Unit Price</th>
-                                    <th>Litres</th>
-                                    <th>Total Price</th>
-                                    <th>Driver Code</th>
-                                    <th>Driver Name</th>
+                                    <th>Unit Numbers</th>
+                                    <th>Tank Number</th>
+                                    <th>Volume</th>
+                                    <th>Volume Percent</th>
+                                    <th>Description</th>
+                                    <th>Capacity</th>
+                                    <th>Status</th>
+                                    <th>Last Update</th>
                                     </thead>
                                     <tbody>
                                         <?php
                                             foreach ($data_master as $key => $data) {
                                         ?>
                                         <tr>
-                                            <td class="hidden"></td>
-                                            <td><?= $data->Date ?></td>
-                                            <td><?= $data->Time ?></td>
-                                            <td><?= $data->Pump ?></td>
-                                            <td><?= $data->UnitPrice ?></td>
-                                            <td><?= $data->Litres ?></td>
-                                            <td><?= $data->TotalPrice ?></td>
-                                            <td><?= $data->DriverKey ?></td>
-                                            <td><?= $data->DriverName ?></td>
+                                            <td class="hidden"><?= $data->tankID ?></td>
+                                            <td><?= $data->UnitNumbers ?></td>
+                                            <td><?= $data->TankNumber ?></td>
+                                            <td><?= $data->Volume ?></td>
+                                            <td><?= $data->VolumePercent ?></td>
+                                            <td><?= $data->Description ?></td>
+                                            <td><?= $data->Capacity ?></td>
+                                            <td><?= $data->Status ?></td>
+                                            <td><?= $data->LastUpdate ?></td>
                                         </tr>
                                             <?php } ?>
                                     </tbody>
@@ -87,9 +84,7 @@
                 </div>
             </section>
         </div>
-        
         <?php include 'includes/footer.php'; ?>
-       
     </div>
     <?php include 'includes/scripts.php'; ?>
 </body>

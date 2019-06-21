@@ -7,8 +7,7 @@
           
         </div>
         <div class="pull-left info">
-          <p><?php echo $user->Firstname.' '.$user->LastName; ?></p>
-          <a><i class="fa fa-circle text-success"></i> Online</a>
+          
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -27,12 +26,25 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Tank Levels</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Volume Supply L15</a></li>
+            <li><a href="tanklevel.php"><i class="fa fa-circle-o"></i> Tank Levels</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Volume Supply</a></li>
             
           </ul>
         </li>
-        
+        <li class="treeview">
+            <a hidden="#">
+                <i class="fa fa-archive"></i>
+                <span>Configuration</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="apikey.php"><i class="fa fa-book"></i>API Key</a></li>
+                <li><a href="#"><i class="fa fa-book"></i>Transaction Range</a></li>
+                <li><a href="#"><i class="fa fa-book"></i>Smart Fill</a></li>
+            </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

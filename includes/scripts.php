@@ -1,5 +1,6 @@
 <!-- jQuery 3 -->
 
+<script src="bower_components/jquery3.4.1/jquery-3.4.1.min.js"></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -16,7 +17,9 @@
 <script src="bower_components/raphael/raphael.min.js"></script>
 <script src="bower_components/morris.js/morris.min.js"></script>
 <!-- ChartJS -->
-<script src="bower_components/chart.js/Chart.js"></script>
+<script src="bower_components/chart/Chart.bundle.js"></script>
+<script src="bower_components/chart/Chart.bundle.min.js"></script>
+<script src="bower_components/chart/chart.js"></script>
 <!-- Sparkline -->
 <script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -116,5 +119,120 @@ $(function(){
   )
   
 });
+
+</script>
+<script>
+
+function update(){
+    var url = "https://fmtdata.com/API/api.php";
+    showLoadingImage();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: 'proses.php?method=getString',
+            success: function(data){
+                defaultReq = data['request'];
+                apikey = data['apikey'];
+                scretkey = data['secreetkey'];
+                tampil();
+                //alert("Test Synch "+ defaultReq + "," + apikey + "," + scretkey);
+            }
+        });
+        function tampil(){
+        
+        try{
+            req = JSON.parse(defaultReq);
+        }catch(ex){
+            alert("Error "+ ex);
+        }
+        req.parameters.clientReference = apikey;
+        req.parameters.clientSecret = scretkey;
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(req),
+            url: url,
+            crossDomain: true
+        })
+        .done(function(data){
+            result = JSON.stringify(data, null,4);
+            var response = {"result":result};
+            
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'proses.php?method=transactions',
+                data: response,
+                success: function(data){
+                    alert(data);
+                    
+                }
+            });
+            hideLoadingImage();
+        });
+        
+    }
+}
+
+function update_tank(){
+    var url = "https://fmtdata.com/API/api.php";
+    showLoadingImage();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: 'proses.php?method=tanklevel',
+            success: function(data){
+                defaultReq = data['request'];
+                apikey = data['apikey'];
+                scretkey = data['secreetkey'];
+                //tampil();
+                alert("Test Synch "+ defaultReq + "," + apikey + "," + scretkey);
+            }
+        });
+        function tampil(){
+        
+        try{
+            req = JSON.parse(defaultReq);
+        }catch(ex){
+            alert("Error "+ ex);
+        }
+        req.parameters.clientReference = apikey;
+        req.parameters.clientSecret = scretkey;
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(req),
+            url: url,
+            crossDomain: true
+        })
+        .done(function(data){
+            result = JSON.stringify(data, null,4);
+            var response = {"result":result};
+            
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'proses.php?method=gettank',
+                data: response,
+                success: function(data){
+                    alert(data);
+                    
+                }
+            });
+            hideLoadingImage();
+        });
+        
+    }
+}
+
+function showLoadingImage() {
+    $('#loading').append('<i id="loading-image"><img src="images/Eclipse-1s-24px.gif" alt="Loading..." /></i>');
+}
+
+function hideLoadingImage() {
+    $('#loading-image').remove();
+    location.reload();
+}
+
 </script>
 
